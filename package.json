@@ -1,0 +1,24 @@
+{
+  "name": "erenbaltaci-secim-bot",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "export NODE_ENV=development yarn format && nodemon src/index.ts",
+    "start": "export NODE_ENV=production && node dist/index.js",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "axios": "^1.3.4",
+    "date-fns": "^2.29.3",
+    "discord.js": "^14.8.0",
+    "dotenv": "^16.0.0",
+    "mongoose": "^7.0.1",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "typescript": "^4.6.2"
+  }
+}
