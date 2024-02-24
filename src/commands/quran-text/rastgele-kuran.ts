@@ -8,16 +8,26 @@ import {
 } from "discord.js";
 import { QuranData, SlashCommand } from "../../types";
 import axios from "axios";
+import UrlStore from "../../store/urlStore";
 
 const RastgeleKuran: SlashCommand = {
   name: "rastgele-ayet",
   id: "rastgele-ayet",
-  category: "info",
+  category: "text-quran",
 
   data: new SlashCommandBuilder()
     .setName("rastgele-ayet")
     .setDescription("Kuran-ı Kerim'den rastgele ayet gösterir."),
   func: async ({ interaction, client }) => {
+    const discordButton = new ButtonBuilder()
+      .setLabel("Destek Sunucusu")
+      .setURL(UrlStore.get("supportServer") as string)
+      .setStyle(ButtonStyle.Link);
+
+    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+      discordButton
+    );
+
     const noResultEmbed = new EmbedBuilder({
       color: Colors.Red,
       description: `:warning: Ayet verilerini çekerken bir hata meydana geldi. Lütfen geliştiriciler ile bu konuyu paylaşın.`,
@@ -73,7 +83,7 @@ const RastgeleKuran: SlashCommand = {
       return;
     } catch (e) {
       console.log(e);
-      interaction.reply({ embeds: [noResultEmbed] });
+      interaction.reply({ embeds: [noResultEmbed], components: [row] });
       return;
     }
   },

@@ -64,8 +64,8 @@ const NamazVakitleri: SlashCommand = {
         new Date(`${date} ${prayerTimes.Dhuhr}`)
       );
 
-      const calculatedSunset = calculateTime(
-        new Date(`${date} ${prayerTimes.Sunset}`)
+      const calculatedAshrTime = calculateTime(
+        new Date(`${date} ${prayerTimes.Asr}`)
       );
 
       const calculatedMaghribTime = calculateTime(
@@ -76,10 +76,42 @@ const NamazVakitleri: SlashCommand = {
         new Date(`${date} ${prayerTimes.Isha}`)
       );
 
+      const now = new Date();
+      let nextPrayer = "";
+      let timeDiff = Infinity;
+
+      for (const [prayerName, prayerTime] of Object.entries(prayerTimes)) {
+        const prayerDate = new Date(`${date} ${prayerTime}`);
+        let diff = prayerDate.getTime() - now.getTime();
+        if (diff < 0) diff += 86_400_000;
+        if (diff < timeDiff) {
+          timeDiff = diff;
+          nextPrayer = prayerName;
+        }
+      }
+
+      const calculatedNextPrayerTime = calculateTime(
+        new Date(`${date} ${prayerTimes[nextPrayer]}`)
+      );
+
+      let emoji = "";
+
+      if (nextPrayer === "Fajr") emoji = "🌅 Sabah";
+      else if (nextPrayer === "Dhuhr") emoji = "☀️ Öğle";
+      else if (nextPrayer === "Asr") emoji = "⛅ İkindi";
+      else if (nextPrayer === "Maghrib") emoji = "🌇 Akşam";
+      else if (nextPrayer === "Isha") emoji = "🌙 Yatsı";
+
       const resultEmbed = new EmbedBuilder({
         title: `${sehir} - Namaz Vakitleri`,
         color: Colors.Yellow,
-        description: `:sunrise: **Sabah Namazı →** ${calculatedFajrTime.hours} Saat ${calculatedFajrTime.minutes} Dakika ${calculatedFajrTime.seconds} Saniye \n\n:sunny: **Öğle Namazı →** ${calculatedDhurTime.hours} Saat ${calculatedDhurTime.minutes} Dakika ${calculatedDhurTime.seconds} Saniye \n\n:white_sun_small_cloud:  **İkindi Namazı →** ${calculatedSunset.hours} Saat ${calculatedSunset.minutes} Dakika ${calculatedSunset.seconds} Saniye \n\n:night_with_stars: **Akşam Namazı →** ${calculatedMaghribTime.hours} Saat ${calculatedMaghribTime.minutes} Dakika ${calculatedMaghribTime.seconds} Saniye \n\n:crescent_moon: **Yatsı Namazı →** ${calculatedIshaTime.hours} Saat ${calculatedIshaTime.minutes} Dakika ${calculatedIshaTime.seconds} Saniye`,
+        description: `🌅 **Sabah Namazı →** ${calculatedFajrTime.hours} Saat ${calculatedFajrTime.minutes} Dakika ${calculatedFajrTime.seconds} Saniye \n\n :sunny: **Öğle Namazı →** ${calculatedDhurTime.hours} Saat ${calculatedDhurTime.minutes} Dakika ${calculatedDhurTime.seconds} Saniye \n\n:white_sun_small_cloud:  **İkindi Namazı →** ${calculatedAshrTime.hours} Saat ${calculatedAshrTime.minutes} Dakika ${calculatedAshrTime.seconds} Saniye \n\n:night_with_stars: **Akşam Namazı →** ${calculatedMaghribTime.hours} Saat ${calculatedMaghribTime.minutes} Dakika ${calculatedMaghribTime.seconds} Saniye \n\n:crescent_moon: **Yatsı Namazı →** ${calculatedIshaTime.hours} Saat ${calculatedIshaTime.minutes} Dakika ${calculatedIshaTime.seconds} Saniye`,
+        fields: [
+          {
+            name: `Sonraki Vakit: ${emoji}`,
+            value: `**Kalan Süre →** ${calculatedNextPrayerTime.hours} Saat ${calculatedNextPrayerTime.minutes} Dakika ${calculatedNextPrayerTime.seconds} Saniye`,
+          },
+        ],
         footer: {
           text: `🔎 ${interaction.user.username} tarafından aratıldı...`,
         },

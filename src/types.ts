@@ -23,7 +23,7 @@ export interface DiscordEvent {
 interface SlashCommand {
   name: string;
   id: string;
-  category: string;
+  category: string | null;
   data: SlashCommandBuilder & any;
   func: ({ client, interaction }: SlashCommandExecution) => Promise<void & any>;
 }
