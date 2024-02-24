@@ -40,8 +40,14 @@ const Help: SlashCommand = {
       .setURL(UrlStore.get("supportServer") as string)
       .setStyle(ButtonStyle.Link);
 
+    const inviteButton = new ButtonBuilder()
+      .setLabel("Davet Bağlantısı")
+      .setURL(UrlStore.get("inviteURL") as string)
+      .setStyle(ButtonStyle.Link);
+
     const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-      discordButton
+      discordButton,
+      inviteButton
     );
 
     const resultEmbed = new EmbedBuilder({
