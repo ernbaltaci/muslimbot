@@ -36,7 +36,7 @@ const invite: SlashCommand = {
     const resultEmbed = new EmbedBuilder({
       title: `${interaction.client.user.username} - Davet`,
       color: Colors.Yellow,
-      description: `Aşağıdaki butonlardan botu davet edebilir & destek sunucusuna katılabilirsiniz.`,
+      description: `<@${interaction.client.user.id}> ile namaz vakitlerini, iftar sahur vakitlerini görebilir; kurandan ayetler dinleyebilir; kuran meallerine bakabilirsiniz. \nBotu davet etmek için butona basabilirsiniz.`,
       footer: {
         text: `🔎 ${interaction.user.username} tarafından kullanıldı...`,
       },
