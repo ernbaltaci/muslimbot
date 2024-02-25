@@ -94,6 +94,7 @@ const NamazVakitleri: SlashCommand = {
         new Date(`${date} ${prayerTimes[nextPrayer]}`)
       );
 
+      console.log(response.data);
       let emoji = "";
 
       if (nextPrayer === "Fajr") emoji = "🌅 Sabah";
@@ -105,7 +106,7 @@ const NamazVakitleri: SlashCommand = {
       const resultEmbed = new EmbedBuilder({
         title: `${sehir} - Namaz Vakitleri`,
         color: Colors.Yellow,
-        description: `🌅 **Sabah Namazı →** ${calculatedFajrTime.hours} Saat ${calculatedFajrTime.minutes} Dakika ${calculatedFajrTime.seconds} Saniye \n\n :sunny: **Öğle Namazı →** ${calculatedDhurTime.hours} Saat ${calculatedDhurTime.minutes} Dakika ${calculatedDhurTime.seconds} Saniye \n\n:white_sun_small_cloud:  **İkindi Namazı →** ${calculatedAshrTime.hours} Saat ${calculatedAshrTime.minutes} Dakika ${calculatedAshrTime.seconds} Saniye \n\n:night_with_stars: **Akşam Namazı →** ${calculatedMaghribTime.hours} Saat ${calculatedMaghribTime.minutes} Dakika ${calculatedMaghribTime.seconds} Saniye \n\n:crescent_moon: **Yatsı Namazı →** ${calculatedIshaTime.hours} Saat ${calculatedIshaTime.minutes} Dakika ${calculatedIshaTime.seconds} Saniye`,
+        description: `🌅 **Sabah Namazı (${prayerTimes.Fajr}) →** ${calculatedFajrTime.hours} Saat ${calculatedFajrTime.minutes} Dakika ${calculatedFajrTime.seconds} Saniye \n\n :sunny: **Öğle Namazı (${prayerTimes.Dhuhr}) →** ${calculatedDhurTime.hours} Saat ${calculatedDhurTime.minutes} Dakika ${calculatedDhurTime.seconds} Saniye \n\n:white_sun_small_cloud:  **İkindi Namazı (${prayerTimes.Asr}) →** ${calculatedAshrTime.hours} Saat ${calculatedAshrTime.minutes} Dakika ${calculatedAshrTime.seconds} Saniye \n\n:night_with_stars: **Akşam Namazı (${prayerTimes.Maghrib}) →** ${calculatedMaghribTime.hours} Saat ${calculatedMaghribTime.minutes} Dakika ${calculatedMaghribTime.seconds} Saniye \n\n:crescent_moon: **Yatsı Namazı (${prayerTimes.Isha}) →** ${calculatedIshaTime.hours} Saat ${calculatedIshaTime.minutes} Dakika ${calculatedIshaTime.seconds} Saniye`,
         fields: [
           {
             name: `Sonraki Vakit: ${emoji}`,

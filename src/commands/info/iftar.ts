@@ -66,7 +66,7 @@ const IftarArama: SlashCommand = {
       const resultEmbed = new EmbedBuilder({
         title: `${sehir} - İftara Kalan`,
         color: Colors.Yellow,
-        description: `**İftara Kalan →** ${calculatedMaghribTime.hours} Saat ${calculatedMaghribTime.minutes} Dakika ${calculatedMaghribTime.seconds} Saniye \n\n**Sahura Kalan →** ${calculatedFajrTime.hours} Saat ${calculatedFajrTime.minutes} Dakika ${calculatedFajrTime.seconds} Saniye`,
+        description: `**İftara Kalan (${prayerTimes.Maghrib}) →** ${calculatedMaghribTime.hours} Saat ${calculatedMaghribTime.minutes} Dakika ${calculatedMaghribTime.seconds} Saniye \n\n**Sahura Kalan (${prayerTimes.Fajr}) →** ${calculatedFajrTime.hours} Saat ${calculatedFajrTime.minutes} Dakika ${calculatedFajrTime.seconds} Saniye`,
         footer: {
           text: `🔎 ${interaction.user.username} tarafından aratıldı...`,
         },
