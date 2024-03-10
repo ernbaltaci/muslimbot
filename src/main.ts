@@ -17,6 +17,10 @@ const client = new Client({
 
 const player = new Player(client);
 
+player.events.on("queueDelete", (queue) => {
+  console.log(queue, "1");
+});
+
 client.on("ready", async (client) => {
   console.log(`${client.user!.username} running. (${process.env.NODE_ENV})`);
 });
