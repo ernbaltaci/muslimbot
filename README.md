@@ -48,8 +48,8 @@ GUILD_ID=your_discord_guild_id_here
 CLIENT_ID=your_discord_client_id_here
 
 5. Terminalde `npm start` komutunu çalıştırarak botu başlatın.
+```
 
 ## Katkılar
 
 Kat Contributionlarınızı memnuniyetle karşılıyoruz! Proje üzerinde çalışmak için bir fikriniz veya öneriniz varsa, lütfen bir issue açın veya bir pull request gönderin.
-```
