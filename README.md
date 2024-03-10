@@ -28,13 +28,28 @@ Bu proje, Node.js ve TypeScript kullanılarak geliştirilmiştir. Node.js, arkas
 1. Projeyi kendi bilgisayarınıza klonlayın.
 2. Gerekli bağımlılıkları yüklemek için terminalde `npm install` komutunu çalıştırın.
 3. Discord botunuzu oluşturun ve bir bot token alın.
-4. `.env` dosyası oluşturun ve içine `TOKEN=your_bot_token_here` şeklinde bot tokenınızı ekleyin.
+4. `.env.development` ve `.env.production` dosyalarını oluşturun ve içlerine aşağıdaki bilgileri ekleyin:
+
+```plaintext
+# .env.development
+
+DISCORD_TOKEN=your_discord_token_here
+MONGODB_URL=your_mongodb_url_here
+NODE_ENV=development
+GUILD_ID=your_discord_guild_id_here
+CLIENT_ID=your_discord_client_id_here
+
+# .env.production
+
+DISCORD_TOKEN=your_discord_token_here
+MONGODB_URL=your_mongodb_url_here
+NODE_ENV=production
+GUILD_ID=your_discord_guild_id_here
+CLIENT_ID=your_discord_client_id_here
+
 5. Terminalde `npm start` komutunu çalıştırarak botu başlatın.
 
 ## Katkılar
 
 Kat Contributionlarınızı memnuniyetle karşılıyoruz! Proje üzerinde çalışmak için bir fikriniz veya öneriniz varsa, lütfen bir issue açın veya bir pull request gönderin.
-
-## Lisans
-
-Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için LICENSE dosyasına göz atabilirsiniz.
+```
